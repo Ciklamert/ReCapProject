@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IBrandDal:IDalRepository<Brand>
+    public interface IBrandDal:IEntityDalRepository<Brand>
     {
     }
 }

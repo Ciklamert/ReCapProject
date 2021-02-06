@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IColorDal:IDalRepository<Color>
+    public interface IColorDal : IEntityDalRepository<Color>
     {
     }
 }
