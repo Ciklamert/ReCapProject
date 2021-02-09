@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,11 @@ namespace DataAccess.Concrete
         {
             return _cars.Where(p => p.Id == brandId).ToList();
 
+        }
+
+        public List<CarDetailDto> GetCarDetailDtos()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)
