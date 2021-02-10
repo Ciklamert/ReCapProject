@@ -41,10 +41,8 @@ namespace ConsoleUI
 
             Console.WriteLine(colorManager.GetById(1).ColorName);
 
-            colorManager.Add(new Color { ColorName = "Lacivert" });
-            Color deletedColor = new Color() { ColorId = 8, ColorName = "Lacivert" };
-
-            colorManager.Delete(deletedColor);
+            
+            
         }
 
         private static void BrandTest(BrandManager brandManager)
@@ -62,8 +60,7 @@ namespace ConsoleUI
 
             Brand newBrand = new Brand() { BrandName = "Renault" };
             brandManager.Add(newBrand);
-            Brand brand = new Brand() { BrandId = 7, BrandName = "Renault" };
-            brandManager.Delete(brand);
+            
         }
 
         private static void CarTest(CarManager carManager)
