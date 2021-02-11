@@ -1,4 +1,5 @@
 ﻿using Core.Business;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Business.Abstract
 {
     public interface IBrandService:IEntityService<Brand>
     {
-        Brand GetById(int id);
+        IDataResult<Brand> GetById(int id);
 
     }
 }

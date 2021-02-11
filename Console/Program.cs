@@ -20,26 +20,38 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
             //ColorTest(colorManager);
 
-            //DtoTest(carManager);
+            DtoTest(carManager);
 
         }
 
         private static void DtoTest(CarManager carManager)
         {
-            foreach (CarDetailDto car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine(car.Description + " -  " + car.BrandName + " - " + car.ColorName);
+                foreach (CarDetailDto car in result.Data)
+                {
+                    Console.WriteLine(car.Description + " -  " + car.BrandName + " - " + car.ColorName);
+                }
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
             }
         }
+            
 
         private static void ColorTest(ColorManager colorManager)
         {
-            foreach (Color color in colorManager.GetAll())
+            var result = colorManager.GetAll();
+            
+            foreach (Color color in result.Data)
             {
                 Console.WriteLine(color.ColorId + "-" + color.ColorName);
             }
 
-            Console.WriteLine(colorManager.GetById(1).ColorName);
+            var result1 = colorManager.GetById(1);
+            Console.WriteLine(result1.Data.ColorName);
 
             
             
@@ -47,9 +59,10 @@ namespace ConsoleUI
 
         private static void BrandTest(BrandManager brandManager)
         {
-            
+
+            var result = brandManager.GetAll();
             Console.WriteLine("Tamamını listeleme");
-            foreach (Brand brand1 in brandManager.GetAll())
+            foreach (Brand brand1 in result.Data)
             {
                 Console.WriteLine(brand1.BrandId + "-" + brand1.BrandName);
             }
@@ -65,20 +78,24 @@ namespace ConsoleUI
 
         private static void CarTest(CarManager carManager)
         {
+            var result = carManager.GetAll();
             Console.WriteLine("Tamamını listeleme");
-            foreach (Car car in carManager.GetAll())
+            foreach (Car car in result.Data)
             {
                 Console.WriteLine(car.Id + " " + car.Description);
             }
+
+            var result1 = carManager.GetAllByBrandId(1);
 
             Console.WriteLine("Brand Id'ye göre listeleme");
-            foreach (Car car in carManager.GetAllByBrandId(1))
+            foreach (Car car in result1.Data)
             {
                 Console.WriteLine(car.Id + " " + car.Description);
             }
 
+            var result2 = carManager.GetAllByColorId(1);
             Console.WriteLine("Color Id'ye göre listeleme");
-            foreach (Car car in carManager.GetAllByColorId(1))
+            foreach (Car car in result.Data)
             {
                 Console.WriteLine(car.Id + " " + car.Description);
             }
