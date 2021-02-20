@@ -20,9 +20,36 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
             //ColorTest(colorManager);
 
-            DtoTest(carManager);
+            //DtoTest(carManager);
+            Rental rental1 = new Rental() { CarId = 1, CustomerId = 1, RentDate = new DateTime(2021, 02, 18), ReturnDate = new DateTime(2021, 02, 19) };
+            Rental rental2 = new Rental() { CarId = 2, CustomerId = 2, RentDate = new DateTime(2021, 02, 20), ReturnDate = null };
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            RentalAddition(rental1, rental2, rentalManager);
 
         }
+
+        private static void RentalAddition(Rental rental1, Rental rental2, RentalManager rentalManager)
+        {
+            if (rentalManager.Add(rental1).Success == true)
+            {
+                rentalManager.Add(rental1);
+                Console.WriteLine(rentalManager.Add(rental1).Message);
+            }
+            else
+            {
+                Console.WriteLine(rentalManager.Add(rental1).Message);
+            }
+            if (rentalManager.Add(rental2).Success == true)
+            {
+                rentalManager.Add(rental2);
+                Console.WriteLine(rentalManager.Add(rental2).Message);
+            }
+            else
+            {
+                Console.WriteLine(rentalManager.Add(rental2).Message);
+            }
+        }
+
 
         private static void DtoTest(CarManager carManager)
         {

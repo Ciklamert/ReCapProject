@@ -11,6 +11,6 @@ namespace Business.Abstract
     {
         
 
-        IDataResult<Color> GetById(int id);
+        
     }
 }

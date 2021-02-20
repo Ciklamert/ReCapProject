@@ -16,5 +16,6 @@ namespace Business.Constants
         internal static string ListedbyColorId = "Renk koduna göre listeleme işlemi tamamlandı";
         internal static string DetailsListed = "Detaylar listelendi.";
         internal static string ListedbyId = "Id'e göre listelendi";
+        internal static string ErrorForRental = "Araba şuan kirada";
     }
 }
