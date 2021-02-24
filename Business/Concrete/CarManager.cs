@@ -1,9 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.Validation_Rules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,16 +27,14 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.Listed);
         }
+        
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.Description.Length >= 2 && car.DailyPrice > 0)
-            {
+                
                 _carDal.Add(car);
                 return new SuccessResult(Messages.Added);
-            }
             
-            
-                return new ErrorResult(Messages.ErrorMessage);
             }
 
         public IResult Delete(Car car)
@@ -41,17 +43,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Deleted);
         }
 
-       
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
-            if (car.Description.Length >= 2 && car.DailyPrice > 0)
-            {
-                _carDal.Update(car);
-                return new SuccessResult(Messages.Updated);
-            }
-
-            return new ErrorResult(Messages.ErrorMessage);
+           
+            _carDal.Update(car);
+            return new SuccessResult(Messages.Updated);
+            
         }
 
         public IDataResult<List<Car>> GetAllByBrandId(int brandId)
